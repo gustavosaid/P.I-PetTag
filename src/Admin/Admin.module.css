@@ -8,8 +8,8 @@
 }
 
 .logo{
-    padding-left: 38%;
-    padding-top: 15px;
+    padding-left: 35%;
+    padding-top: 25px;
     width: 120px;
     height: 120px;
 }
@@ -17,13 +17,13 @@
 .headersConteudo{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    color: #333333;
+    color: hsl(0, 0%, 20%);
     border: 10px solid #e6e6e6;
     background-color: #f8fbfc;
-    border-radius: 5px;
+    border-radius: 25px;
     display: block;
+    padding: 5px;
     margin: 20px;
-    padding: 10px;
 
     
 }
@@ -31,18 +31,18 @@
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     background-color: #E0FFFF;
-    padding: 1px;
+    padding: 25px;
     width: 500px;
-    border-radius: 5px;
+    border-radius: 25px;
     margin: 0px auto;
-    box-shadow: 9px 9px 50px black;
+    box-shadow: 5px 5px 50px black;
     
     
 }
 .headersConteudo th {
     background-color: #ebebeb;
-    height:17px;
-    padding-top: 15px;
+    height:15px;
+    padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
@@ -62,24 +62,45 @@
     border-right-color: #ecdbdb;
     border-bottom-color: #BFBFBF;
     border-left-color: #DFDFDF;
+    border-radius: 10px;
 }
 .headersConteudo td {
     border: 2px solid #cac7c7;
-    height: 10px;
+    height: 40px;
     text-decoration: none;
-    padding: 10px;
+    padding: 15px;
     background: #DFDFDF;
+    border-radius: 10px;
     
 }
-td{
-    display: table-cell;
-    vertical-align: inherit;
-    unicode-bidi: isolate;
+
+.leftAlign {
+    text-align: left;
 }
-tr{
-    display: table-row;
-    vertical-align: inherit;
-    unicode-bidi: isolate;
-    border-color: inherit;
+  
+.centerAlign {
+    text-align: center;
+}
+  
+
+.editar {
+    width: 50px;
+    height: 50px;
+    background-image:url('../Assets/Images/editar.png') ;
+    cursor:pointer;
+    background-size: cover; 
+    background-position:center;
+    border-radius: 10px;
+
 }
 
+.excluir {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-image:url('../Assets/Images/excluir.png') ;
+    background-size: cover; 
+    background-position: center;
+    border-radius: 10px;
+
+}

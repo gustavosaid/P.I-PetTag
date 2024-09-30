@@ -1,7 +1,9 @@
 import React from "react";
 import styles from '../Admin/Admin.module.css';
-import wzap  from '../Assets/Images/whatsapp.png';
+import wzap from '../Assets/Images/whatsapp.png';
 import reactLogo from '../Assets/Images/logo.png';
+import excluir from '../Assets/Images/excluir.png'
+import editar from '../Assets/Images/editar.png'
 
 
 
@@ -20,7 +22,7 @@ function Admin() {
               <th scope="col" className={styles.centerAlign}>Ações</th>
             </tr>
           </thead>
-          
+
           {/* Corpo da tabela */}
           <tbody>
             <tr>
@@ -83,6 +85,10 @@ function Admin() {
                 </a>
               </td>
             </tr>
+            <button type="reset" className={styles.excluir}></button>
+          
+            <button type="reset" className={styles.editar}></button>
+            
           </tbody>
         </table>
       </div>
