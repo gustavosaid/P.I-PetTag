@@ -1,9 +1,9 @@
 import React from "react";
 import styles from '../Admin/Admin.module.css';
 import wzap from '../Assets/Images/whatsapp.png';
+import excluir from '../Assets/Images/excluir.png'
 import reactLogo from '../Assets/Images/logo.png';
-import { MdDeleteOutline } from "react-icons/md";
-import { BsWhatsapp } from "react-icons/bs";
+
 
 
 
@@ -33,14 +33,14 @@ function Admin() {
               <td className={styles.centerAlign}>Vilma Tereza</td>
               <td className={styles.centerAlign}>34 996390833</td>
               <td className={styles.centerAlign}>
-                <button className={styles.centerAlign} >
-                <BsWhatsapp className={styles.icon} />
-                </button>
+              <a href="https://api.whatsapp.com/" className={styles.centerAlign}>  {/*Chama api do Whatsapp*/}
+                  <img src={wzap} alt="whatsapp" className={styles.icon} />
+                </a>
               </td>
               <td>
-                <button className={styles.centerAlign}>
-                <MdDeleteOutline className={styles.icon} />
-                </button>
+              <a href="https://www.youtube.com/" className={styles.centerAlign}>{/*Chama api do Excluir*/}
+                  <img src={excluir} alt="whatsapp" className={styles.icon} />
+                </a>
               </td>
             </tr>
             <tr>
@@ -48,14 +48,15 @@ function Admin() {
               <td className={styles.centerAlign}>bianca</td>
               <td className={styles.centerAlign}>34 996336172</td>
               <td className={styles.centerAlign}>
-              <button className={styles.centerAlign} >
-                <BsWhatsapp className={styles.icon} />
-                </button>
+
+              <a href="https://api.whatsapp.com/" className={styles.centerAlign}> {/*Chama api do Whatsapp*/}
+                  <img src={wzap} alt="whatsapp" className={styles.icon} />
+                </a>
               </td>
               <td>
-                <button className={styles.centerAlign}>
-                <MdDeleteOutline className={styles.icon} />
-                </button>
+              <a href="https://www.youtube.com/" className={styles.centerAlign}> {/*Chama api para Excluir*/}
+                  <img src={excluir} alt="whatsapp" className={styles.icon} />
+                </a>
               </td>
             </tr>
           </tbody>
