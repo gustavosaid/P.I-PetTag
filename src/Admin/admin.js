@@ -2,8 +2,8 @@ import React from "react";
 import styles from '../Admin/Admin.module.css';
 import wzap from '../Assets/Images/whatsapp.png';
 import reactLogo from '../Assets/Images/logo.png';
-import excluir from '../Assets/Images/excluir.png'
-import editar from '../Assets/Images/editar.png'
+import { MdDeleteOutline } from "react-icons/md";
+import { BsWhatsapp } from "react-icons/bs";
 
 
 
@@ -13,6 +13,7 @@ function Admin() {
       <img src={reactLogo} alt="logo pet tag" className={styles.logo} />
       <div className={styles.headersConteudo}>
         <table className={styles.table}>
+          
           {/* Cabeçalho da tabela */}
           <thead>
             <tr>
@@ -20,6 +21,8 @@ function Admin() {
               <th scope="col" className={styles.centerAlign}>Nome do Pet</th>
               <th scope="col" className={styles.centerAlign}>Telefone</th>
               <th scope="col" className={styles.centerAlign}>Ações</th>
+              <th scope="col" className={styles.centerAlign}>Excluir</th>
+
             </tr>
           </thead>
 
@@ -30,9 +33,14 @@ function Admin() {
               <td className={styles.centerAlign}>Vilma Tereza</td>
               <td className={styles.centerAlign}>34 996390833</td>
               <td className={styles.centerAlign}>
-                <a href="https://www.youtube.com/">
-                  <img src={wzap} width={25} height={25} alt="wzap" />
-                </a>
+                <button className={styles.centerAlign} >
+                <BsWhatsapp className={styles.icon} />
+                </button>
+              </td>
+              <td>
+                <button className={styles.centerAlign}>
+                <MdDeleteOutline className={styles.icon} />
+                </button>
               </td>
             </tr>
             <tr>
@@ -40,59 +48,21 @@ function Admin() {
               <td className={styles.centerAlign}>bianca</td>
               <td className={styles.centerAlign}>34 996336172</td>
               <td className={styles.centerAlign}>
-                <a href="https://www.youtube.com/">
-                  <img src={wzap} width={25} height={25} alt="wzap" />
-                </a>
+              <button className={styles.centerAlign} >
+                <BsWhatsapp className={styles.icon} />
+                </button>
+              </td>
+              <td>
+                <button className={styles.centerAlign}>
+                <MdDeleteOutline className={styles.icon} />
+                </button>
               </td>
             </tr>
-            <tr>
-              <td className={styles.centerAlign}>Tiago</td>
-              <td className={styles.centerAlign}>Toddy</td>
-              <td className={styles.centerAlign}>34 999999999</td>
-              <td className={styles.centerAlign}>
-                <a href="https://www.youtube.com/">
-                  <img src={wzap} width={25} height={25} alt="wzap" />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td className={styles.centerAlign}>Kauã</td>
-              <td className={styles.centerAlign}>Lili</td>
-              <td className={styles.centerAlign}>34 8888888888</td>
-              <td className={styles.centerAlign}>
-                <a href="https://www.youtube.com/">
-                  <img src={wzap} width={25} height={25} alt="wzap" />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td className={styles.centerAlign}>Lucas</td>
-              <td className={styles.centerAlign}>negão</td>
-              <td className={styles.centerAlign}>34 77777777777</td>
-              <td className={styles.centerAlign}>
-                <a href="https://www.youtube.com/">
-                  <img src={wzap} width={25} height={25} alt="wzap" />
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td className={styles.centerAlign}>Luis henrique</td>
-              <td className={styles.centerAlign}>meg</td>
-              <td className={styles.centerAlign}>34 66666666</td>
-              <td className={styles.centerAlign}>
-                <a href="https://www.youtube.com/">
-                  <img src={wzap} width={25} height={25} alt="wzap" />
-                </a>
-              </td>
-            </tr>
-            <button type="reset" className={styles.excluir}></button>
-          
-            <button type="reset" className={styles.editar}></button>
-            
           </tbody>
         </table>
       </div>
     </div>
+
   );
 }
 

@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from '../Login/login.module.css';	
 import reactLogo from '../Assets/Images/logo.png';
+
+
 function Login() {
   const navigate = useNavigate();
-  const [credencial, setCredencial] = useState({ username: 'Admin', password: 'Admin@123' });
+  const [credencial, setCredencial] = useState({ username: 'Admin', password: 'admin123' });
   const [error, setError] = useState('');
 
   const LoginAdm = (e) => {
