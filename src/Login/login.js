@@ -14,10 +14,10 @@ function Login() {
 
       // Simulação do login, verifica as credenciais
       if (credencial.username === 'Admin' && credencial.password === 'admin123') {
-          setError(' ');
+          setError('');
           navigate('/Admin');
       } else {
-          setError('Usuário ou senha incorretos');
+          setError('🤫Usuário ou senha incorretos🤫', );
       }
   };
 

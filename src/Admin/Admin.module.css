@@ -29,9 +29,9 @@
 .corpo{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
-    background-color: #E0FFFF;
+    background-color: #8ab2c8;
     padding: 20px;
-    width: 500px;
+    width: 600px;
     border-radius: 25px;
     margin: 0px auto;
     box-shadow: 5px 5px 50px black;
@@ -85,4 +85,5 @@
     height: 30px;
     cursor: pointer;
 }
+
 
