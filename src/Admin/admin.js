@@ -34,38 +34,42 @@ function Admin() {
               <td className={styles.centerAlign}>Vilma Tereza</td>
               <td className={styles.centerAlign}>34 996390833</td>
               <td className={styles.centerAlign}>
-                <a href="https://api.whatsapp.com/" className={styles.centerAlign}>  {/*Chama api do Whatsapp*/}
+                <a href="https://api.whatsapp.com/">  {/*Chama api do Whatsapp*/}
                   <img src={wzap} alt="whatsapp" className={styles.icon} />
                 </a>
               </td>
-              <td>
-                <a href="https://www.youtube.com/" className={styles.centerAlign}>{/*Chama api do Excluir*/}
+
+              <td className={styles.centerAlign}>
+                <a href="https://www.youtube.com/" >{/*Chama api do Excluir*/}
                   <img src={excluir} alt="whatsapp" className={styles.icon} />
                 </a>
               </td>
-              <td>
-                <a href="https://www.youtube.com/" className={styles.centerAlign}>{/*Chama editar*/}
+
+              <td className={styles.centerAlign}>
+                <a href="https://www.youtube.com/" >{/*Chama editar*/}
                   <img src={editar} alt="whatsapp" className={styles.icon} />
                 </a>
               </td>
             </tr>
+
             <tr>
               <td className={styles.centerAlign}>Gustavo Ribeiro</td>
-              <td className={styles.centerAlign}>bianca</td>
+              <td className={styles.centerAlign}>Bianca</td>
               <td className={styles.centerAlign}>34 996336172</td>
-              <td className={styles.centerAlign}>
 
-                <a href="https://api.whatsapp.com/" className={styles.centerAlign}> {/*Chama api do Whatsapp*/}
+              <td className={styles.centerAlign}>
+                <a href="https://api.whatsapp.com/" > {/*Chama api do Whatsapp*/}
                   <img src={wzap} alt="whatsapp" className={styles.icon} />
                 </a>
               </td>
-              <td>
-                <a href="https://www.youtube.com/" className={styles.centerAlign}> {/*Chama  Excluir*/}
+
+              <td className={styles.centerAlign}>
+                <a href="https://www.youtube.com/" > {/*Chama  Excluir*/}
                   <img src={excluir} alt="whatsapp" className={styles.icon} />
                 </a>
               </td>
-              <td>
-                <a href="https://www.youtube.com/" className={styles.centerAlign}>{/*Chama editar */}
+              <td className={styles.centerAlign}>
+                <a href="https://www.youtube.com/" >{/*Chama editar */}
                   <img src={editar} alt="whatsapp" className={styles.icon} />
                 </a>
               </td>
