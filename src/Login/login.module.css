@@ -14,22 +14,22 @@ body {
   height: 100px; 
 }
 
-#login {
+/* .login {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%; 
-}
+} */
 
 .card {
   width: 300px;
   background-color: #8ab2c8;
-  padding: 40px; 
-  border-radius: 5px;
+  padding: 50px; 
+  border-radius: 15px;
   text-align: center; 
 }
 
-.cardHeader {
+.cardHeader { /*texto login*/
   padding-bottom: 20px; 
   color: #ffffff;
 }
@@ -60,7 +60,7 @@ body {
 
 .cardContentArea input {
   margin-top: 10px;
-  padding: 0 5px;
+  padding: 0 130px;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #fdfdfd;
@@ -81,13 +81,6 @@ body {
   color: #000000;
   margin: 10px 0;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 25px;
 }
 
-.cardFooter a {
-  text-align: center;
-  font-size: 15px;
-  opacity: 0.8;
-  color: #fff;
-  text-decoration: none;
-}
