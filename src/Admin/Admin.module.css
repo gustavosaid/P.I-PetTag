@@ -6,8 +6,9 @@
     text-indent: initial;
     unicode-bidi: isolate;
     border-spacing: 2px;
-}
-
+    
+    
+} 
 .logo{
     width: 150px;
     height: 150px;
@@ -21,27 +22,28 @@
     color: hsl(0, 0%, 0%);
     border: 8px solid #e6e6e6;
     background-color: #f8fbfc;
-    border-radius: 20px;
-    display: block;
-    padding: 20px;
-    margin: 15px;
+    border-radius: 25px;
+    display: table;
+    padding: 30px;
+    margin: 8px;
 }
 
 .corpo{
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 20px;
     background-color: #8ab2c8;
-    padding: 25px;
+    padding: 50px;
     width: 600px;
     border-radius: 25px;
     margin: 0px auto;
     box-shadow: 5px 5px 35px #aed4e6;
+    display: table;
     
     
 }
 .headersConteudo th {
     background-color: #ebebeb;
-    height:5px;
+    height:100%;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 5px;
@@ -63,10 +65,12 @@
     border-bottom-color: #BFBFBF;
     border-left-color: #DFDFDF;
     border-radius: 10px;
+    
+    
 }
 .headersConteudo td {
     border: 2px solid #cacaca;
-    height: 35px;
+    height: 5px;
     text-decoration: none;
     padding: 10px;
     background: #DFDFDF;

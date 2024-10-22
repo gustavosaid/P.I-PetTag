@@ -22,26 +22,26 @@ function Admin() {
             {/* Cabeçalho da tabela */}
             <thead>
               <tr>
-                <th scope="col" className={styles.centerAlign}>
+                <th scope="col" >
                   <img src={pessoas} className={styles.tags} alt="Foto de pessoas"/>
                 </th>
-                <th scope="col" className={styles.centerAlign}>
+                <th scope="col" >
                   <img src={animals} className={styles.tags} alt="Animais" />
                 </th>
-                <th scope="col" className={styles.centerAlign}>
+                <th scope="col" >
                   <img src={telefone} className={styles.tags} alt="Telefone para contato" />
                 </th>
-                <th scope="col" className={styles.centerAlign}>Whatsapp</th>
-                <th scope="col" className={styles.centerAlign}>Excluir</th>
-                <th scope="col" className={styles.centerAlign}>Editar</th>
+                <th scope="col" >Whatsapp</th>
+                <th scope="col" >Excluir</th>
+                <th scope="col" >Editar</th>
               </tr>
             </thead>
 
             {/* Corpo da tabela */}
             <tbody>
               <tr>
-                <td className={styles.centerAlign}>Individuo A</td>
-                <td className={styles.centerAlign}>Vilma Tereza</td>
+                <td className={styles.centerAlign}>1234567890</td>
+                <td className={styles.centerAlign}>Vilma</td>
                 <td className={styles.centerAlign}>34 8888888888</td>
                 <td className={styles.centerAlign}>
                   <a href="#">  {/*Chama api do Whatsapp*/}
@@ -85,10 +85,6 @@ function Admin() {
                 </td>
               </tr>
             </tbody>
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-            <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css" />
           </table>
         </div>
       </div>
