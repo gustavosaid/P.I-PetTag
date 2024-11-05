@@ -6,14 +6,14 @@ import reactLogo from '../Assets/Images/logo.png';
 
 function Login() {
     const navigate = useNavigate();
-    const [credencial, setCredencial] = useState({ username: 'Admin', password: 'admin123' });
+    const [credencial, setCredencial] = useState({ username: 'admin', password: 'admin123' });
     const [error, setError] = useState('');
 
     const LoginAdm = (e) => {
         e.preventDefault();
 
         // Simulação do login, verifica as credenciais
-        if (credencial.username === 'Admin' && credencial.password === 'admin123') {
+        if (credencial.username === 'admin' && credencial.password === 'admin123') {
             setError('');
             navigate('/Admin');
         } else {

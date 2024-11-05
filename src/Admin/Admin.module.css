@@ -42,7 +42,7 @@
     
 }
 .headersConteudo th {
-    background-color: #ebebeb;
+    background-color: #e1eef6;
     height:100%;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -73,7 +73,7 @@
     height: 5px;
     text-decoration: none;
     padding: 10px;
-    background: #DFDFDF;
+    background: #e5e5e5;
     border-radius: 8px;
 }
 
@@ -94,6 +94,12 @@
 .tags{
     width: 35px;
     height: 35px;
+}
+
+.button{
+    background-color: transparent;
+    border: none;
+    
 }
 
 
