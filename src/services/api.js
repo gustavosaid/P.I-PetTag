@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: "", // coloco o http://localhost:3030 da api do kaua
+    baseURL: "http://localhost:5001",
 })
 
 export default api;

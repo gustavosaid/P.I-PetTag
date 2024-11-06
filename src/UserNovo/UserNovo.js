@@ -33,7 +33,7 @@ function UserNovo() {
     // async function loadNome_resp() {
     //     try {
 
-    //         const response = await api.get(`api/responsavel/${Id}`, authorization) // coloco endpoint do responsavelID de acordo com o api
+    //         const response = await api.get(`api/responsavel/${Id}`, authorization) // coloco nedpoint do responsavelID de acordo com o api
 
     //         setId(response.data.id);
     //         setNome(response.data.nome);
