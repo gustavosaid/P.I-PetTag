@@ -31,6 +31,24 @@ function Admin() {
     navigate('/UserNovo/'); // ('/UserNovo/${userId} Redireciona para a página de edição do usuário com o ID fornecido
   };
 
+  // async function editCadastro(id) {
+  // try{
+  //   history.push('/admin') // endpoint do responsavel novo `responsavel/novo/${id}`
+  // } catch(error){
+  //   alert('Nao e possivel editar o cadastro')
+  // }   
+  // }
+
+  // async function deleteCadastro(id){
+  //   try{
+  //     if(window.confirm('Deseja deletar o cadastro do responsável: '+ responsvel + '?')){
+  //       await api.delete(`api/responsavel/${id},authorization`);
+  //       setResponsavel(responsvel.filter(responsavel => responsavel.id !== id));
+  //     }
+  //   } catch(error) {
+  //     alert('Não é possivel excluir o cadastro')
+  //   }
+  // }
 
   return (
     <div className={styles.corpo}>
@@ -69,14 +87,14 @@ function Admin() {
               </td>
 
               <td className={styles.centerAlign}>
-                <button className={styles.button} >{/*Chama api do Excluir*/}
-                  <img src={excluir} alt="whatsapp" className={styles.icon} />
+                <button className={styles.button } > {/*onClick={() => deleteCadastro(responsavel.id)}*/}
+                  <img src={excluir} alt="deletar" className={styles.icon} />
                 </button>
               </td>
 
               <td className={styles.centerAlign}>
-                <button onClick={() => handleEdit(1)} className={styles.button} >{/*Chama editar*/}
-                  <img src={editar} alt="whatsapp" className={styles.icon} />
+                <button onClick={() => handleEdit(1)} className={styles.button} >{/*Chama editar*/} {/*onClick={() => editCadastro(responsavel.id)*/}
+                  <img src={editar} alt="editar" className={styles.icon} />
                 </button >
               </td>
             </tr>
