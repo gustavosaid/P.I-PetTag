@@ -6,24 +6,25 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  font-family: Poppins, sans-serif; 
+  font-family: Poppins, sans-serif;
 }
 
 .imagem {
   width: 100px;
-  height: 100px; 
+  height: 100px;
 }
 
 .card {
   width: 300px;
   background-color: #8ab2c8;
-  padding: 50px; 
+  padding: 50px;
   border-radius: 15px;
-  text-align: center; 
+  text-align: center;
 }
 
-.cardHeader { /*texto login*/
-  font-size: 18px; 
+.cardHeader {
+  /*texto login*/
+  font-size: 18px;
   color: #ffffff;
 }
 
@@ -33,7 +34,7 @@ body {
   height: 2px;
   background-color: #AFEEEE;
   display: block;
-  margin: 10px auto; 
+  margin: 10px auto;
   margin-top: -20px;
 }
 
@@ -57,7 +58,7 @@ body {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #fdfdfd;
-  outline:none;
+  outline: none;
   color: #fff;
   font-size: 18px;
 }
@@ -79,4 +80,3 @@ body {
   font-size: 14.2px;
   font-weight: bold;
 }
-

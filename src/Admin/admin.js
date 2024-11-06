@@ -87,7 +87,7 @@ function Admin() {
               </td>
 
               <td className={styles.centerAlign}>
-                <button className={styles.button } > {/*onClick={() => deleteCadastro(responsavel.id)}*/}
+                <button className={styles.button} > {/*onClick={() => deleteCadastro(responsavel.id)}*/}
                   <img src={excluir} alt="deletar" className={styles.icon} />
                 </button>
               </td>

@@ -13,20 +13,23 @@ body {
   /*texto atualizar dados*/
   padding-bottom: 20px;
   color: #ffffff;
+
 }
 
 
-.cardHeader::after {  /*linha em baixo do text*/
+.cardHeader::after {
+  /*linha em baixo do text*/
   content: "";
   width: 190px;
   height: 2px;
   background-color: #3f56e7;
   display: block;
-  margin: 10px auto; 
+  margin: 10px auto;
   margin-top: -35px;
 }
 
-.card {  /*quadrado de fora*/
+.card {
+  /*quadrado de fora*/
   width: 380px;
   background-color: #8ab2c8;
   padding: 50px;
@@ -34,7 +37,8 @@ body {
   text-align: center;
 }
 
-.cardContent label {  /* Nome responsavel, nome pet, telefone*/
+.cardContent label {
+  /* Nome responsavel, nome pet, telefone*/
   display: block;
   margin-bottom: 5px;
   color: #ffffff;
@@ -42,7 +46,8 @@ body {
   font-weight: bold;
 }
 
-.cardContentArea {  /* espassamentos*/
+.cardContentArea {
+  /* espassamentos*/
   display: flex;
   flex-direction: column;
   padding: 15px 0;

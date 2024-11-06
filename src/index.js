@@ -12,11 +12,11 @@ ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />}/>
+        <Route path="/" element={<Login />} />
         <Route path="/Admin" element={<Admin />} />
-        <Route path="/UserNovo" element={<UserNovo />} /> 
+        <Route path="/UserNovo" element={<UserNovo />} />
         {/* colocar :id em frente userNovo para puxar o User ID*/}
-        
+
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

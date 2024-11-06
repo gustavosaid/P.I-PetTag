@@ -8,11 +8,11 @@ import api from '../services/api';
 function UserNovo() {
 
     // const [id, setId] = useState(null);
-    // const [nome, setNome] = useState('');
-    // const [nomePet, setNomePet] = useState('');
-    // const [tel, setTel] = useState(0);
+    // const [nome_resp, setNomeResp] = useState('');
+    // const [nome_pet, setNomePet] = useState('');
+    // const [telefone, setTelefone] = useState(0);
 
-    // const { responsavelId } = useParams();
+    // const { Id } = useParams();
     // const history = useHistory();
 
     // const token = localStorage.getItem('token');
@@ -24,20 +24,20 @@ function UserNovo() {
     // }
 
     // useEffect(() => {
-    //     if (responsavelId === '0')
+    //     if (Id === '0')
     //         return;
     //     else
-    //         loadResponsavel();
+    //         loadNome_resp();
     // }, responsavelId)
 
-    // async function loadResponsavel() {
+    // async function loadNome_resp() {
     //     try {
 
-    //         const response = await api.get(`api/responsavel/${responsavelId}`, authorization) // coloco endpoint do responsavelID de acordo com o api
+    //         const response = await api.get(`api/responsavel/${Id}`, authorization) // coloco endpoint do responsavelID de acordo com o api
 
     //         setId(response.data.id);
     //         setNome(response.data.nome);
-    //         setNomePet(response.data.nomePet);
+    //         setNomePet(response.data.nome_pet);
     //         setTel(response.data.tel);
     //     } catch (error) {
     //         alert('Erro ao recuperar o cadastro' + error);
@@ -61,7 +61,7 @@ function UserNovo() {
     //             data.id = id;
     //             await api.put(`api/responsvel/${id}`,data,authorization)
     //         } 
-        
+
 
     //     } catch (error) {
     //         alert('erro ao gravar responsavel' + error);
@@ -81,35 +81,40 @@ function UserNovo() {
                 <div className={styles.cardContentArea}>
                     <label>Nome Responsavel</label>
                     <input
+                        required="required"
                         type="text"
                         id="nomes"
                         name="username"
-                        // value={nome}
-                        // onChange={e => setNome(e.target.value)}
+                    // value={nome}
+                    // onChange={e => setNome(e.target.value)}
                     />
                 </div>
 
                 <div className={styles.cardContentArea}>
                     <label>Nome do Pet</label>
                     <input
+                        required="required"
                         type="text"
                         id="nomePet"
                         name="username"
-                        // value={nomePet}
-                        // onChange={e => setNomePet(e.target.value)}
+                    // value={nomePet}
+                    // onChange={e => setNomePet(e.target.value)}
 
                     />
                 </div>
                 <div className={styles.cardContentArea}>
                     <label>Telefone</label>
                     <input
+
+                        required="required"
                         type="tel"
                         id="tel"
                         name="phone"
                         minlength="8"
                         maxlength="11"
-                        // value={tel}
-                        // onChange={e => setTel(e.target.value)}
+                        pattern="[0-9]+$"
+                    // value={tel}
+                    // onChange={e => setTel(e.target.value)}
                     />
                 </div>
             </div>
