@@ -8,7 +8,7 @@ import pessoas from '../Assets/Images/pessoas.png';
 import animals from '../Assets/Images/animais-de-estimacao.png'
 import telefone from '../Assets/Images/telefone-fixo.png'
 import { useNavigate } from 'react-router-dom';
-import { cadastroGet } from '../services/api';
+import { cadastroGet, cadastroDelete } from '../services/api';
 
 // import api from '../services/api';
 
@@ -29,41 +29,30 @@ function Admin() {
 
   const navigate = useNavigate();
   const [dados, setDados] = useState([]);
-  
 
 
-  const handleEdit = () => {
-    navigate('/UserNovo/'); // ('/UserNovo/${userId} Redireciona para a página de edição do usuário com o ID fornecido
+
+  const handleEdit = (Id) => {
+    navigate(`/admin/editar/${Id}`); // Corrigido para incluir o ID na URL
   };
 
 
+  async function editCadastro(id) {
+  try{
+    navigate('/admin') // endpoint do responsavel novo responsavel/novo/${id}
+  } catch(error){
+    alert('Nao e possivel editar o cadastro')
+  }   
+  }
 
-  // async function editCadastro(id) {
-  // try{
-  //   history.push('/admin') // endpoint do responsavel novo responsavel/novo/${id}
-  // } catch(error){
-  //   alert('Nao e possivel editar o cadastro')
-  // }   
-  // }
-
-  // async function deleteCadastro(id){
-  //   try{
-  //     if(window.confirm('Deseja deletar o cadastro: '+ nome_resp + '?')){
-  //       await api.delete(api/responsavel/${id},authorization);
-  //       setResponsavel(responsvel.filter(nome_resp => nome_resp.id !== id));
-  //     }
-  //   } catch(error) {
-  //     alert('Não é possivel excluir o cadastro')
-  //   }
-  // }
 
   // Exemplo de uso do GET ao carregar o componente
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await cadastroGet();
-        console.log('Dados recebidos:', data);
-        setDados(data);
+        console.log('Estrutura completa dos dados:', data);
+        setDados(data.cadastro);
       } catch (error) {
         console.error('Erro ao carregar dados:', error);
       }
@@ -71,6 +60,24 @@ function Admin() {
     fetchData();
   }, []);
 
+
+  const handleDelete = async (id) => {
+    if (window.confirm("Tem certeza que deseja excluir este item?")) {
+      try {
+        console.log("Tentando excluir o item com ID:", id);
+        
+        setDados(dados.filter(item => item.id !== id)); // Remove o item excluído da lista
+        alert("Item excluído com sucesso!");
+      } catch (error) {
+        if (error.response) {
+          console.log("Erro na resposta da API:", error.data);
+        } else {
+          console.error("Erro desconhecido:", error);
+        }
+        throw error;
+      }
+    }
+  };
 
 
 
@@ -100,28 +107,26 @@ function Admin() {
           </thead>
 
           {/* Corpo da tabela */}
-          
+
           <tbody>
-            
             {Array.isArray(dados) && dados.length > 0 ? (
-              dados.map((item, index) => (
-                
-                <tr key={index}>
-                  <td className={styles.centerAlign}>{item.nome_reso}</td>
+              dados.map((item) => (
+                <tr key={item.id}>
+                  <td className={styles.centerAlign}>{item.nome_resp}</td>
                   <td className={styles.centerAlign}>{item.nome_pet}</td>
-                  <td className={styles.centerAlign}>{item.telefone}</td>
+                  <td className={styles.centerAlign}>{item.telefone }</td>
                   <td className={styles.centerAlign}>
                     <button className={styles.button}>
                       <img src={wzap} alt="whatsapp" className={styles.icon} />
                     </button>
                   </td>
                   <td className={styles.centerAlign}>
-                    <button className={styles.button}>
+                    <button className={styles.button} onClick={() => handleDelete(item.id)}>
                       <img src={excluir} alt="deletar" className={styles.icon} />
                     </button>
                   </td>
                   <td className={styles.centerAlign}>
-                    <button onClick={() => handleEdit(item.id)} className={styles.button}>
+                    <button onClick={() => handleEdit()} className={styles.button}>
                       <img src={editar} alt="editar" className={styles.icon} />
                     </button>
                   </td>
@@ -129,7 +134,7 @@ function Admin() {
               ))
             ) : (
               <tr>
-                <td colSpan="6" className={styles.centerAlign}>Carregando...</td>
+                <td colSpan="6" className={styles.centerAlign}>Nenhum dado disponível</td>
               </tr>
             )}
           </tbody>

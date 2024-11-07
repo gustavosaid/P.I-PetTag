@@ -31,4 +31,16 @@ export const cadastroPost = async (data) => {
     }
   };
 
+// Funcao para DELETE
+export const cadastroDelete = async (id) => {
+  try {
+    const response = await api.delete(`/api/rest/cadastrodelete/${id}`);
+    console.log("Resposta da API para a exclusão:", response);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao fazer o DELETE:', error.response || error.message);
+    throw error;
+  }
+};
+
 export default api;

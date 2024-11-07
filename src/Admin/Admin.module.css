@@ -1,10 +1,14 @@
 .table {
-    display: table;
+    display: table !important;
     border-collapse: separate;
     box-sizing: border-box;
     text-indent: initial;
     unicode-bidi: isolate;
     border-spacing: 2px;
+    margin-left: 10px;
+    width: 90%; /* Ocupa 90% da largura do componente pai */
+    max-width: 1000px; /* Define um limite máximo */
+    margin: 0 auto; 
 
 }
 
@@ -27,6 +31,9 @@
     display: table;
     padding: 30px;
     margin: 8px;
+    padding: 30px 30px 30px 40px;
+    width: 80%; /* Ajuste o percentual conforme necessário */
+    margin: 0 auto;
 }
 
 .corpo {
@@ -34,13 +41,17 @@
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 20px;
     background-color: #8ab2c8;
-    padding: 50px;
-    width: 600px;
+    padding: 30px;
+    width: 800px;
     border-radius: 25px;
     margin: 0px auto;
     box-shadow: 5px 5px 35px #aed4e6;
     display: table;
-
+    visibility: visible !important;
+    opacity: 1 !important;
+    padding-left: 20px;
+    max-height: 800px; /* Ajuste para a altura desejada */
+    overflow-y: auto;
 
 }
 
@@ -109,4 +120,14 @@
     background-color: transparent;
     border: none;
 
+}
+
+.headersConteudo th:nth-child(4),
+.headersConteudo th:nth-child(5),
+.headersConteudo th:nth-child(6),
+.headersConteudo td:nth-child(4),
+.headersConteudo td:nth-child(5),
+.headersConteudo td:nth-child(6) {
+    width: 50px; /* Largura fixa para colunas de ícones */
+    text-align: center;
 }
