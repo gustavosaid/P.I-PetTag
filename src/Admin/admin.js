@@ -8,6 +8,7 @@ import pessoas from '../Assets/Images/pessoas.png';
 import animals from '../Assets/Images/animais-de-estimacao.png'
 import telefone from '../Assets/Images/telefone-fixo.png'
 import { useNavigate } from 'react-router-dom';
+
 // import api from '../services/api';
 
 
@@ -27,7 +28,7 @@ function Admin() {
 
   const navigate = useNavigate();
 
-  const handleEdit = (userId) => {
+  const handleEdit = (Id) => {
     navigate('/UserNovo/'); // ('/UserNovo/${userId} Redireciona para a página de edição do usuário com o ID fornecido
   };
 
@@ -41,9 +42,9 @@ function Admin() {
 
   // async function deleteCadastro(id){
   //   try{
-  //     if(window.confirm('Deseja deletar o cadastro do responsável: '+ responsvel + '?')){
+  //     if(window.confirm('Deseja deletar o cadastro: '+ nome_resp + '?')){
   //       await api.delete(`api/responsavel/${id},authorization`);
-  //       setResponsavel(responsvel.filter(responsavel => responsavel.id !== id));
+  //       setResponsavel(responsvel.filter(nome_resp => nome_resp.id !== id));
   //     }
   //   } catch(error) {
   //     alert('Não é possivel excluir o cadastro')
@@ -87,13 +88,13 @@ function Admin() {
               </td>
 
               <td className={styles.centerAlign}>
-                <button className={styles.button} > {/*onClick={() => deleteCadastro(responsavel.id)}*/}
+                <button className={styles.button} > {/*onClick={() => deleteCadastro(nome_resp.id)}*/}
                   <img src={excluir} alt="deletar" className={styles.icon} />
                 </button>
               </td>
 
               <td className={styles.centerAlign}>
-                <button onClick={() => handleEdit(1)} className={styles.button} >{/*Chama editar*/} {/*onClick={() => editCadastro(responsavel.id)*/}
+                <button onClick={() => handleEdit(1)} className={styles.button} >{/*Chama editar*/} {/*onClick={() => editCadastro(nome_resp.id)*/}
                   <img src={editar} alt="editar" className={styles.icon} />
                 </button >
               </td>

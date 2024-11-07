@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../UserNovo/UserNovo.module.css'
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useNavigate} from 'react-router-dom';
+import voltar from '../Assets/Images/botao-voltar.png'
+import { FaBeer } from "react-icons/fa";
 import api from '../services/api';
 
 
 
 function UserNovo() {
+
+    const navigate = useNavigate();
+
+    const handleEdit = (Id) => {
+      navigate('/Admin/'); // ('/UserNovo/${userId} Redireciona para a página de edição do usuário com o ID fornecido
+    };
 
     // const [id, setId] = useState(null);
     // const [nome_resp, setNomeResp] = useState('');
@@ -36,9 +44,9 @@ function UserNovo() {
     //         const response = await api.get(`api/responsavel/${Id}`, authorization) // coloco nedpoint do responsavelID de acordo com o api
 
     //         setId(response.data.id);
-    //         setNome(response.data.nome);
+    //         setNomeResp(response.data.nome_resp);
     //         setNomePet(response.data.nome_pet);
-    //         setTel(response.data.tel);
+    //         setTelefone(response.data.telefone);
     //     } catch (error) {
     //         alert('Erro ao recuperar o cadastro' + error);
     //         history.push('/admin');
@@ -49,13 +57,13 @@ function UserNovo() {
     //     event.preventDefault();
 
     //     const data = {
-    //         nome,
-    //         nomePet,
-    //         tel
+    //         nome_resp,
+    //         nome_pet,
+    //         telefone
 
     //     }
     //     try {
-    //         if (responsavelId === '0') {
+    //         if (Id === '0') {
     //             await api.post('api/responsavel', data, authorization);
     //         }else{
     //             data.id = id;
@@ -124,7 +132,13 @@ function UserNovo() {
                     Salvar
                 </button>
             </div>
+            <div className={styles.cardFooter}>
+                <button type="submit" className={styles.submitBack} onClick={() => handleEdit()} >{/*responsavelId === '0' ? 'Incluir' : 'Atualizar Cadastro'*/}
+                    Voltar
+                </button>
+            </div>
 
+            
         </form>
     );
 }
