@@ -9,7 +9,16 @@
     width: 90%; /* Ocupa 90% da largura do componente pai */
     max-width: 1000px; /* Define um limite máximo */
     margin: 0 auto; 
+    
 
+}
+
+.teste{
+    height:100%;
+    overflow: auto;
+    max-height: 650px;
+    width:auto;
+    
 }
 
 .logo {
@@ -34,6 +43,9 @@
     padding: 30px 30px 30px 40px;
     width: 80%; /* Ajuste o percentual conforme necessário */
     margin: 0 auto;
+    
+    
+    
 }
 
 .corpo {
@@ -51,7 +63,8 @@
     opacity: 1 !important;
     padding-left: 20px;
     max-height: 800px; /* Ajuste para a altura desejada */
-    overflow-y: auto;
+    
+    
 
 }
 

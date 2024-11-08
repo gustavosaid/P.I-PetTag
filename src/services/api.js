@@ -9,6 +9,8 @@ const api = axios.create({
 });
 
 
+
+
 // Função para o POST
 export const cadastroPost = async (data) => {
     try {
@@ -32,15 +34,47 @@ export const cadastroPost = async (data) => {
   };
 
 // Funcao para DELETE
-export const cadastroDelete = async (id) => {
+// export const cadastroDelete = async (id) => {
+//   axios.delete(`https://sweeping-skunk-98.hasura.app/api/rest/cadastrodelete`)
+  
+// .then(() => {
+//   getData();
+// })
+// };
+
+export const cadastroUpdate = async (id, nome_resp, nome_pet, telefone) => {
   try {
-    const response = await api.delete(`/api/rest/cadastrodelete/${id}`);
-    console.log("Resposta da API para a exclusão:", response);
+    // Dados a serem atualizados
+    const data = {
+      nome_resp,
+      nome_pet,
+      telefone
+    };
+
+    // Enviar os dados no corpo da requisição PUT
+    const response = await api.put(`/api/rest/cadastroput/${id}`, data);
+    
+    console.log("Cadastro atualizado com sucesso:", response.data);
     return response.data;
   } catch (error) {
-    console.error('Erro ao fazer o DELETE:', error.response || error.message);
-    throw error;
+    console.error("Erro ao atualizar os dados:", error);
+    throw error;  // Re-lança o erro para que possa ser tratado em outro lugar
   }
 };
 
+export const cadastroDelete = async (id) => {
+  try {
+    const response = await api.delete(`/api/rest/cadastrodelete/${id}`);
+    console.log("Resposta da API para a exclusão:", response.data);
+    return response.data;  // Retorna a resposta de sucesso
+  } catch (error) {
+    console.error('Erro ao excluir o item:', error);
+    throw error;  // Propaga o erro para ser tratado no frontend
+  }
+};
+
+
+
+
+ 
 export default api;

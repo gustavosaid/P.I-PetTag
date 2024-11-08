@@ -1,13 +1,3 @@
-body {
-  padding: 0;
-  margin: 0;
-  background-color: #E0FFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  font-family: Poppins, sans-serif;
-}
 
 .imagem {
   width: 120px;
