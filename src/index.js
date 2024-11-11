@@ -14,7 +14,7 @@ ReactDOM.createRoot(rootElement).render(
       <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/Admin" element={<Admin />} />
-      <Route path="/Admin/editar/:Id" element={<UserNovo />} />  {/* Rota de edição */}
+      <Route path="/Admin/editar/:NomeResp" element={<UserNovo />} />  {/* Rota de edição */}
       <Route path="/UserNovo" element={<UserNovo />} />
         {/* <Route path="/Admin/" element={<UserNovo />} /> Rota de edição */}
         {/* colocar :id em frente userNovo para puxar o User ID */}

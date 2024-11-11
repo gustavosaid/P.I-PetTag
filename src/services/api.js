@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: 'https://sweeping-skunk-98.hasura.app',
-  timeout: 5000, // 5 segundos
+  timeout: 10000, // 5 segundos
   headers: {
     'x-hasura-admin-secret': 'x00yP3MGCTzCC4ZhuoOomsBZXKiSIztQGN9faITw6uJDeL0d7gL2SsnCjKMuwVow',
   },
@@ -14,7 +14,7 @@ const api = axios.create({
 // Função para o POST
 export const cadastroPost = async (data) => {
     try {
-      const response = await api.post('/api/rest/cadastropost', data);
+      const response = await api.post('/api/rest/cadastropost ', data);
       return response.data;
       
     } catch (error) {
