@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import styles from '../Admin/Admin.module.css';
 import wzap from '../Assets/Images/whatsapp.png';
 import excluir from '../Assets/Images/botao-apagar.png';
@@ -8,17 +10,18 @@ import pessoas from '../Assets/Images/pessoas.png';
 import phone from '../Assets/Images/telefone-fixo.png';
 import animals from '../Assets/Images/animais-de-estimacao.png';
 
-import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
-
 function Admin() {
   const navigate = useNavigate();
   const { id } = useParams(); // Pega o id da URL para edição
+  console.log('ID capturado da URL:', id);  // Verifique se o id está sendo capturado
+
   const [dados, setDados] = useState([]);
   const [nomePet, setNomePet] = useState('');
   const [nomeResp, setNomeResp] = useState('');
   const [telefone, setTelefone] = useState('');
+
   const token = localStorage.getItem('token');
+
   const authorization = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -66,11 +69,18 @@ function Admin() {
         setTelefone(cadastroToEdit.telefone);
       }
     }
-  }, [id, dados]);  // Dependência em dados e id para garantir que a edição só aconteça quando o id estiver disponível
+  }, [id, dados]); // Dependência em dados e id para garantir que a edição só aconteça quando o id estiver disponível
 
   // Função para editar um cadastro
   const handleEdit = async () => {
+    const idInt = parseInt(id, 10);  // Converte o id para número
+    if (isNaN(idInt)) {
+      alert("ID inválido. Por favor, verifique o ID e tente novamente.");
+      return;
+    }
+  
     try {
+      // Realizando a requisição para a API
       const response = await axios.post(
         'https://sweeping-skunk-98.hasura.app/v1/graphql',
         {
@@ -92,7 +102,7 @@ function Admin() {
             }
           `,
           variables: {
-            id: parseInt(id),  // Usando o ID da URL para atualizar
+            id: idInt,  // Usando o ID da URL para atualizar
             nome_pet: nomePet,
             nome_resp: nomeResp,
             telefone: telefone,
@@ -104,13 +114,19 @@ function Admin() {
           },
         }
       );
+  
+      // Verificando se a resposta tem dados válidos
       if (response.data.data.update_cadastro_by_pk) {
         alert('Cadastro atualizado com sucesso!');
-        navigate('/admin');  // Redireciona para a página Admin após a atualização
+        // Redireciona para a página Admin após a atualização
+        navigate(`/admin`);
+      } else {
+        alert('Erro ao atualizar o cadastro. Tente novamente.');
       }
+  
     } catch (error) {
-      console.error('Erro ao atualizar o cadastro:', error);
-      alert('Erro ao atualizar o cadastro!');
+      console.error('Erro ao realizar a mutação:', error);
+      alert('Ocorreu um erro ao tentar atualizar o cadastro. Por favor, tente novamente mais tarde.');
     }
   };
 
@@ -213,5 +229,6 @@ function Admin() {
     </div >
   );
 }
+
 
 export default Admin;

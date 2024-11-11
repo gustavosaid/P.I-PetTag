@@ -27,45 +27,46 @@ function Login() {
     };
 
     return (
+        <div className={styles.login}>
+            <form className={styles.card} onSubmit={LoginAdm}>
+                <img src={reactLogo} alt="logo pet tag" className={styles.imagem} />
 
-        <form className={styles.card} onSubmit={LoginAdm}>
-            <img src={reactLogo} alt="logo pet tag" className={styles.imagem} />
-
-            <div className={styles.cardHeader}>
-                <h2>Login</h2>
-            </div>
-
-            <div className={styles.cardContent}>
-                <div className={styles.cardContentArea}>
-                    <label>Usuário</label>
-                    <input
-                        type="text"
-                        id="nomes"
-                        name="username"
-                        value={credencial.username}
-                        onChange={handleInputChange}
-                    />
+                <div className={styles.cardHeader}>
+                    <h2>Login</h2>
                 </div>
 
-                <div className={styles.cardContentArea}>
-                    <label>Senha</label>
-                    <input
-                        type="password"
-                        id="senha"
-                        name="password"
-                        value={credencial.password}
-                        onChange={handleInputChange}
-                    />
-                </div>
-            </div>
+                <div className={styles.cardContent}>
+                    <div className={styles.cardContentArea}>
+                        <label>Usuário</label>
+                        <input
+                            type="text"
+                            id="nomes"
+                            name="username"
+                            value={credencial.username}
+                            onChange={handleInputChange}
+                        />
+                    </div>
 
-            <div className={styles.cardFooter}>
-                <button type="submit" className={styles.submit}>
-                    Entrar
-                </button>
-            </div>
-            {error && <p className="mensagem de erro">{error}</p>}
-        </form>
+                    <div className={styles.cardContentArea}>
+                        <label>Senha</label>
+                        <input
+                            type="password"
+                            id="senha"
+                            name="password"
+                            value={credencial.password}
+                            onChange={handleInputChange}
+                        />
+                    </div>
+                </div>
+
+                <div className={styles.cardFooter}>
+                    <button type="submit" className={styles.submit}>
+                        Entrar
+                    </button>
+                </div>
+                {error && <p className="mensagem de erro">{error}</p>}
+            </form>
+        </div>
     );
 }
 

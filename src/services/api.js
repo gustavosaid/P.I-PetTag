@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const api = axios.create({
-    //baseURL: "http://localhost:5001",
-    baseURL: 'https://sweeping-skunk-98.hasura.app',
-    headers: {
-        'x-hasura-admin-secret': 'x00yP3MGCTzCC4ZhuoOomsBZXKiSIztQGN9faITw6uJDeL0d7gL2SsnCjKMuwVow',
-    },
+  baseURL: 'https://sweeping-skunk-98.hasura.app',
+  timeout: 5000, // 5 segundos
+  headers: {
+    'x-hasura-admin-secret': 'x00yP3MGCTzCC4ZhuoOomsBZXKiSIztQGN9faITw6uJDeL0d7gL2SsnCjKMuwVow',
+  },
 });
 
 
@@ -16,6 +16,7 @@ export const cadastroPost = async (data) => {
     try {
       const response = await api.post('/api/rest/cadastropost', data);
       return response.data;
+      
     } catch (error) {
       console.error('Erro ao fazer o POST:', error);
       throw error;
