@@ -5,9 +5,8 @@ import api from '../services/api.js';
 
 function UserNovo() {
     const navigate = useNavigate();
-    const { Id } = useParams();
-
-    const [id, setId] = useState(null);
+    const { Id } = useParams(); // Captura o 'Id' da URL
+    const [id, setId] = useState(Id ? parseInt(Id, 10) : null); // Converte 'Id' para número inteiro
     const [nome_resp, setNomeResp] = useState('');
     const [nome_pet, setNomePet] = useState('');
     const [telefone, setTelefone] = useState('');
@@ -24,19 +23,11 @@ function UserNovo() {
     // Função para carregar dados do cadastro
     useEffect(() => {
         async function loadCadastro() {
-            if (!Id || Id === '0') return;
-
-            console.log('ID:', Id);
-
-            const token = localStorage.getItem('token');
-            if (!token) {
-                console.error('Token não encontrado.');
-                return;
-            }
+            if (!id || id === 0) return;
 
             try {
                 const response = await api.post(
-                    '/v1/graphql', // Endpoint GraphQL
+                    '/v1/graphql',
                     {
                         query: `
                             query GetCadastro($id: Int!) {
@@ -48,11 +39,10 @@ function UserNovo() {
                                 }
                             }
                         `,
-                        variables: { id: Id },
+                        variables: { id },
                     },
                     authorization
                 );
-                console.log('Resposta da API:', response.data);
                 const cadastro = response.data.data.cadastro_by_pk;
                 if (cadastro) {
                     setId(cadastro.id);
@@ -70,88 +60,88 @@ function UserNovo() {
         }
 
         loadCadastro();
-    }, [Id, navigate]);
+    }, [id, navigate]);
 
     // Função para salvar ou atualizar o cadastro
     async function saveOrUpdate(event) {
-    event.preventDefault();
+        event.preventDefault();
 
-    const data = {
-        nome_resp,
-        nome_pet,
-        telefone
-    };
+        const data = {
+            nome_resp,
+            nome_pet,
+            telefone,
+        };
 
-    try {
-        let response;
-        if (!id || id === '0') {
-            // Criação de novo cadastro
-            response = await api.post(
-                '/v1/graphql',
-                {
-                    query: `
-                        mutation CreateCadastro($nome_resp: String!, $nome_pet: String!, $telefone: String!) {
-                            insert_cadastro_one(object: {nome_resp: $nome_resp, nome_pet: $nome_pet, telefone: $telefone}) {
-                                id
-                                nome_resp
-                                nome_pet
-                                telefone
+        try {
+            let response;
+            if (!id || id === 0) {
+                // Criação de novo cadastro
+                response = await api.post(
+                    '/v1/graphql',
+                    {
+                        query: `
+                            mutation CreateCadastro($nome_resp: String!, $nome_pet: String!, $telefone: String!) {
+                                insert_cadastro_one(object: {nome_resp: $nome_resp, nome_pet: $nome_pet, telefone: $telefone}) {
+                                    id
+                                    nome_resp
+                                    nome_pet
+                                    telefone
+                                }
                             }
-                        }
-                    `,
-                    variables: { nome_resp, nome_pet, telefone },
-                },
-                authorization
-            );
+                        `,
+                        variables: { nome_resp, nome_pet, telefone },
+                    },
+                    authorization
+                );
 
-            console.log('Cadastro Criado:', response.data);
+                console.log('Cadastro Criado:', response.data);
 
-            // Log de erros
-            if (response.errors) {
-                console.error('Erro ao criar o cadastro:', response.errors);
-                alert('Erro ao criar o cadastro. Detalhes: ' + JSON.stringify(response.errors));
+                if (response.data.errors) {
+                    console.error('Erro ao criar o cadastro:', response.data.errors);
+                    alert('Erro ao criar o cadastro. Detalhes: ' + JSON.stringify(response.data.errors));
+                }
+
+            } else {
+                // Atualização de cadastro
+                response = await api.post(
+                    '/v1/graphql',
+                    {
+                        query: `
+                            mutation UpdateCadastro($id: Int!, $nome_resp: String, $nome_pet: String, $telefone: String) {
+                                update_cadastro_by_pk(
+                                    pk_columns: { id: $id },
+                                    _set: { nome_resp: $nome_resp, nome_pet: $nome_pet, telefone: $telefone }
+                                ) {
+                                    id
+                                    nome_resp
+                                    nome_pet
+                                    telefone
+                                }
+                            }
+                        `,
+                        variables: { id, nome_resp, nome_pet, telefone },
+                    },
+                    authorization
+                );
+
+                console.log('Cadastro Atualizado:', response.data);
             }
 
-        } else {
-            // Atualização de cadastro
-            response = await api.post(
-                '/v1/graphql',
-                {
-                    query: `
-                        mutation UpdateCadastro($id: Int!, $nome_resp: String, $nome_pet: String, $telefone: String) {
-                            update_cadastro_by_pk(
-                                pk_columns: { id: $id },
-                                _set: { nome_resp: $nome_resp, nome_pet: $nome_pet, telefone: $telefone }
-                            ) {
-                                id
-                                nome_resp
-                                nome_pet
-                                telefone
-                            }
-                        }
-                    `,
-                    variables: { id, nome_resp, nome_pet, telefone },
-                },
-                authorization
-            );
-            console.log('Cadastro Atualizado:', response.data);
-        }
+            alert('Cadastro salvo com sucesso!');
+            navigate('/admin');
+        } catch (error) {
+            console.error('Erro ao gravar responsável:', error.message);
+            if (error.response) {
+                console.error('Detalhes do erro do servidor:', error.response.data);
+            } else if (error.request) {
+                console.error('Erro na requisição, sem resposta:', error.request);
+            } else {
+                console.error('Erro na configuração da requisição:', error.config);
+            }
 
-        alert('Cadastro salvo com sucesso!');
-        navigate('/admin');  // Redireciona para a página de admin após salvar
-    } catch (error) {
-        console.error('Erro ao gravar responsável:', error.message);
-        if (error.response) {
-            console.error('Detalhes do erro do servidor:', error.response.data);
-        } else if (error.request) {
-            console.error('Erro na requisição, sem resposta:', error.request);
-        } else {
-            console.error('Erro na configuração da requisição:', error.config);
+            alert('Erro ao gravar responsável: ' + (error.response ? error.response.data : error.message));
         }
-
-        alert('Erro ao gravar responsável: ' + (error.response ? error.response.data : error.message));
     }
-}
 
     return (
         <form className={styles.card} onSubmit={saveOrUpdate}>

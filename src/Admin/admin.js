@@ -13,7 +13,7 @@ import animals from '../Assets/Images/animais-de-estimacao.png';
 function Admin() {
   const navigate = useNavigate();
   const { id } = useParams(); // Pega o id da URL para edição
-  console.log('ID capturado da URL:', id);  // Verifique se o id está sendo capturado
+  console.log('ID capturado da URL:', id);
 
   const [dados, setDados] = useState([]);
   const [nomePet, setNomePet] = useState('');
@@ -21,7 +21,6 @@ function Admin() {
   const [telefone, setTelefone] = useState('');
 
   const token = localStorage.getItem('token');
-
   const authorization = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -77,14 +76,13 @@ function Admin() {
 
   // Função para editar um cadastro
   const handleEdit = async () => {
-    const idInt = parseInt(id, 10);  // Converte o id para número
+    const idInt = parseInt(id, 10);
     if (isNaN(idInt)) {
       alert("ID inválido. Por favor, verifique o ID e tente novamente.");
       return;
     }
 
     try {
-      // Realizando a requisição para a API
       const response = await axios.post(
         'https://sweeping-skunk-98.hasura.app/v1/graphql',
         {
@@ -92,11 +90,7 @@ function Admin() {
             mutation UpdateCadastro($id: Int!, $nome_pet: String, $nome_resp: String, $telefone: String) {
               update_cadastro_by_pk(
                 pk_columns: { id: $id }
-                _set: {
-                  nome_pet: $nome_pet
-                  nome_resp: $nome_resp
-                  telefone: $telefone
-                }
+                _set: { nome_pet: $nome_pet, nome_resp: $nome_resp, telefone: $telefone }
               ) {
                 id
                 nome_pet
@@ -106,7 +100,7 @@ function Admin() {
             }
           `,
           variables: {
-            id: idInt,  // Usando o ID da URL para atualizar
+            id: idInt,
             nome_pet: nomePet,
             nome_resp: nomeResp,
             telefone: telefone,
@@ -119,14 +113,13 @@ function Admin() {
         }
       );
 
-      // Verificando se a resposta tem dados válidos
       if (response.data.data.update_cadastro_by_pk) {
+        console.log('Cadastro atualizado com sucesso:', response.data);
         alert('Cadastro atualizado com sucesso!');
         navigate(`/admin`);
       } else {
         alert('Erro ao atualizar o cadastro. Tente novamente.');
       }
-
     } catch (error) {
       console.error('Erro ao realizar a mutação:', error);
       alert('Ocorreu um erro ao tentar atualizar o cadastro. Por favor, tente novamente mais tarde.');
@@ -159,8 +152,9 @@ function Admin() {
           }
         );
         if (response.data.data.delete_cadastro_by_pk) {
-          setDados(dados.filter(item => item.id !== id));  // Atualiza a lista após exclusão
+          setDados(dados.filter(item => item.id !== id));
           alert('Cadastro excluído com sucesso!');
+          navigate(`/admin`); // Redireciona após exclusão
         }
       } catch (error) {
         console.error('Erro ao excluir o item:', error);
@@ -177,15 +171,9 @@ function Admin() {
           <table className={styles.table}>
             <thead>
               <tr>
-                <th scope="col">
-                  <img src={pessoas} className={styles.tags} alt="Foto de pessoas" />
-                </th>
-                <th scope="col">
-                  <img src={animals} className={styles.tags} alt="Animais" />
-                </th>
-                <th scope="col">
-                  <img src={phone} className={styles.tags} alt="Telefone" />
-                </th>
+                <th scope="col">Nome Responsável</th>
+                <th scope="col">Nome Pet</th>
+                <th scope="col">Telefone</th>
                 <th scope="col">Whatsapp</th>
                 <th scope="col">Excluir</th>
                 <th scope="col">Editar</th>
@@ -210,7 +198,7 @@ function Admin() {
                       </button>
                     </td>
                     <td className={styles.centerAlign}>
-                      <button onClick={() => navigate(`/Admin/editar/${item.id}`)} className={styles.button}>
+                      <button onClick={() => navigate(`/admin/editar/${item.id}`)} className={styles.button}>
                         <img src={editar} alt="editar" className={styles.icon} />
                       </button>
                     </td>
@@ -225,7 +213,39 @@ function Admin() {
           </table>
         </div>
       </div>
-    </div >
+
+      {/* Formulário de Edição */}
+      {id && (
+        <div className={styles.formContainer}>
+          <h2>Editar Cadastro</h2>
+          <form onSubmit={handleEdit}>
+            {/* Campos de entrada */}
+            <input
+              type="text"
+              placeholder="Nome do Pet"
+              value={nomePet}
+              onChange={(e) => setNomePet(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Nome do Responsável"
+              value={nomeResp}
+              onChange={(e) => setNomeResp(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              placeholder="Telefone"
+              value={telefone}
+              onChange={(e) => setTelefone(e.target.value)}
+              required
+            />
+            <button type="submit">Atualizar</button>
+          </form>
+        </div>
+      )}
+    </div>
   );
 }
 
