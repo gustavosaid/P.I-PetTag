@@ -28,7 +28,7 @@ function Admin() {
     },
   };
 
-  // Carregar os cadastros ao montar o componente
+  // Carregar todos os cadastros ao montar o componente
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -59,17 +59,21 @@ function Admin() {
     };
 
     fetchData();
+  }, []);
 
-    // Se estiver na página de edição, buscar os dados do cadastro específico
-    if (id) {
-      const cadastroToEdit = dados.find(item => item.id === parseInt(id));
+  // Buscar dados do cadastro específico para edição
+  useEffect(() => {
+    if (id && dados.length > 0) {
+      const cadastroToEdit = dados.find(item => item.id === parseInt(id, 10));
       if (cadastroToEdit) {
         setNomePet(cadastroToEdit.nome_pet);
         setNomeResp(cadastroToEdit.nome_resp);
         setTelefone(cadastroToEdit.telefone);
+      } else {
+        console.warn('Cadastro não encontrado para o ID:', id);
       }
     }
-  }, [id, dados]); // Dependência em dados e id para garantir que a edição só aconteça quando o id estiver disponível
+  }, [id, dados]);
 
   // Função para editar um cadastro
   const handleEdit = async () => {
@@ -78,7 +82,7 @@ function Admin() {
       alert("ID inválido. Por favor, verifique o ID e tente novamente.");
       return;
     }
-  
+
     try {
       // Realizando a requisição para a API
       const response = await axios.post(
@@ -114,16 +118,15 @@ function Admin() {
           },
         }
       );
-  
+
       // Verificando se a resposta tem dados válidos
       if (response.data.data.update_cadastro_by_pk) {
         alert('Cadastro atualizado com sucesso!');
-        // Redireciona para a página Admin após a atualização
         navigate(`/admin`);
       } else {
         alert('Erro ao atualizar o cadastro. Tente novamente.');
       }
-  
+
     } catch (error) {
       console.error('Erro ao realizar a mutação:', error);
       alert('Ocorreu um erro ao tentar atualizar o cadastro. Por favor, tente novamente mais tarde.');
@@ -172,7 +175,6 @@ function Admin() {
       <div className={styles.headersConteudo}>
         <div className={styles.teste}>
           <table className={styles.table}>
-            {/* Cabeçalho da tabela */}
             <thead>
               <tr>
                 <th scope="col">
@@ -181,18 +183,15 @@ function Admin() {
                 <th scope="col">
                   <img src={animals} className={styles.tags} alt="Animais" />
                 </th>
-
                 <th scope="col">
                   <img src={phone} className={styles.tags} alt="Telefone" />
                 </th>
-
                 <th scope="col">Whatsapp</th>
                 <th scope="col">Excluir</th>
                 <th scope="col">Editar</th>
               </tr>
             </thead>
 
-            {/* Corpo da tabela */}
             <tbody>
               {Array.isArray(dados) && dados.length > 0 ? (
                 dados.map((item) => (
@@ -211,7 +210,7 @@ function Admin() {
                       </button>
                     </td>
                     <td className={styles.centerAlign}>
-                      <button onClick={() => handleEdit(item.id)} className={styles.button}>
+                      <button onClick={() => navigate(`/Admin/editar/${item.id}`)} className={styles.button}>
                         <img src={editar} alt="editar" className={styles.icon} />
                       </button>
                     </td>
@@ -229,6 +228,5 @@ function Admin() {
     </div >
   );
 }
-
 
 export default Admin;
