@@ -5,8 +5,8 @@ import api from '../services/api.js';
 
 function UserNovo() {
     const navigate = useNavigate();
-    const { Id } = useParams(); // Captura o 'Id' da URL
-    const [id, setId] = useState(Id ? parseInt(Id, 10) : null); // Converte 'Id' para número inteiro
+    const { Id } = useParams();
+    const [id, setId] = useState(Id ? parseInt(Id, 10) : null);
     const [nome_resp, setNomeResp] = useState('');
     const [nome_pet, setNomePet] = useState('');
     const [telefone, setTelefone] = useState('');
@@ -20,10 +20,9 @@ function UserNovo() {
         withCredentials: true,
     };
 
-    // Função para carregar dados do cadastro
     useEffect(() => {
         async function loadCadastro() {
-            if (!id || id === 0) return;
+            if (!id) return; // Se não há `id`, não tenta carregar.
 
             try {
                 const response = await api.post(
@@ -48,7 +47,7 @@ function UserNovo() {
                     setId(cadastro.id);
                     setNomeResp(cadastro.nome_resp || '');
                     setNomePet(cadastro.nome_pet || '');
-                    setTelefone(cadastro.telefone || '');
+                    setTelefone(cadastro.telefone ? cadastro.telefone.toString() : '');
                 } else {
                     alert('Nenhum dado encontrado para o cadastro.');
                     navigate('/admin');
@@ -62,25 +61,23 @@ function UserNovo() {
         loadCadastro();
     }, [id, navigate]);
 
-    // Função para salvar ou atualizar o cadastro
     async function saveOrUpdate(event) {
         event.preventDefault();
 
         const data = {
             nome_resp,
             nome_pet,
-            telefone,
+            telefone: parseInt(telefone, 10),
         };
 
         try {
             let response;
-            if (!id || id === 0) {
-                // Criação de novo cadastro
+            if (id === null) { // Verificação estrita se `id` é nulo (novo cadastro)
                 response = await api.post(
                     '/v1/graphql',
                     {
                         query: `
-                            mutation CreateCadastro($nome_resp: String!, $nome_pet: String!, $telefone: String!) {
+                            mutation CreateCadastro($nome_resp: String!, $nome_pet: String!, $telefone: numeric!) {
                                 insert_cadastro_one(object: {nome_resp: $nome_resp, nome_pet: $nome_pet, telefone: $telefone}) {
                                     id
                                     nome_resp
@@ -89,25 +86,18 @@ function UserNovo() {
                                 }
                             }
                         `,
-                        variables: { nome_resp, nome_pet, telefone },
+                        variables: data,
                     },
                     authorization
                 );
-
                 console.log('Cadastro Criado:', response.data);
-
-                if (response.data.errors) {
-                    console.error('Erro ao criar o cadastro:', response.data.errors);
-                    alert('Erro ao criar o cadastro. Detalhes: ' + JSON.stringify(response.data.errors));
-                }
-
             } else {
                 // Atualização de cadastro
                 response = await api.post(
                     '/v1/graphql',
                     {
                         query: `
-                            mutation UpdateCadastro($id: Int!, $nome_resp: String, $nome_pet: String, $telefone: String) {
+                            mutation UpdateCadastro($id: Int!, $nome_resp: String, $nome_pet: String, $telefone: numeric) {
                                 update_cadastro_by_pk(
                                     pk_columns: { id: $id },
                                     _set: { nome_resp: $nome_resp, nome_pet: $nome_pet, telefone: $telefone }
@@ -119,11 +109,10 @@ function UserNovo() {
                                 }
                             }
                         `,
-                        variables: { id, nome_resp, nome_pet, telefone },
+                        variables: { ...data, id },
                     },
                     authorization
                 );
-
                 console.log('Cadastro Atualizado:', response.data);
             }
 
@@ -131,14 +120,6 @@ function UserNovo() {
             navigate('/admin');
         } catch (error) {
             console.error('Erro ao gravar responsável:', error.message);
-            if (error.response) {
-                console.error('Detalhes do erro do servidor:', error.response.data);
-            } else if (error.request) {
-                console.error('Erro na requisição, sem resposta:', error.request);
-            } else {
-                console.error('Erro na configuração da requisição:', error.config);
-            }
-
             alert('Erro ao gravar responsável: ' + (error.response ? error.response.data : error.message));
         }
     }
@@ -147,7 +128,7 @@ function UserNovo() {
         <form className={styles.card} onSubmit={saveOrUpdate}>
             <div className={styles.cardHeader}>
                 <div className={styles.cardContentArea}>
-                    <h2>{Id === '0' ? 'Incluir Novo Cadastro' : 'Atualizar Cadastro'}</h2>
+                    <h2>{id ? 'Atualizar Cadastro' : 'Incluir Novo Cadastro'}</h2>
                 </div>
             </div>
             <div className={styles.cardContent}>
@@ -176,15 +157,18 @@ function UserNovo() {
                     <input
                         required
                         type="tel"
+                        
                         value={telefone}
                         onChange={e => setTelefone(e.target.value)}
+                        minLength={11}
+                        maxLength={11}
                     />
                 </div>
             </div>
 
             <div className={styles.cardFooter}>
                 <button type="submit" className={styles.submit}>
-                    {Id === '0' ? 'Incluir' : 'Atualizar Cadastro'}
+                    {id ? 'Atualizar Cadastro' : 'Incluir'}
                 </button>
             </div>
 

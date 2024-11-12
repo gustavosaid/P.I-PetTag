@@ -6,9 +6,9 @@ import wzap from '../Assets/Images/whatsapp.png';
 import excluir from '../Assets/Images/botao-apagar.png';
 import editar from '../Assets/Images/editar.png';
 import reactLogo from '../Assets/Images/logo.png';
-import pessoas from '../Assets/Images/pessoas.png';
-import phone from '../Assets/Images/telefone-fixo.png';
-import animals from '../Assets/Images/animais-de-estimacao.png';
+// import pessoas from '../Assets/Images/pessoas.png';
+// import phone from '../Assets/Images/telefone-fixo.png';
+// import animals from '../Assets/Images/animais-de-estimacao.png';
 
 function Admin() {
   const navigate = useNavigate();
@@ -27,7 +27,29 @@ function Admin() {
     },
   };
 
-  // Carregar todos os cadastros ao montar o componente
+
+  // Gerar link para whatsapp web
+  function generateWhatsAppLink(telefoneNumber, nomeResp, nomePet) {
+    const telefoneString = telefoneNumber ? telefoneNumber.toString() : '';
+    const telefoneFormatado = telefoneString.replace(/\D/g, '');
+  
+    if (telefoneFormatado === '') {
+      console.warn('Número de telefone não fornecido ou inválido');
+      return '#';
+    }
+  
+    // Mensagem do wpp
+    const mensagem = `Olá ${nomeResp}, estamos entrando em contato sobre o pet ${nomePet}!`;
+    const mensagemEncoded = encodeURIComponent(mensagem); // Codifica a mensagem para a URL
+  
+    // Url q sera usada no whatsapp
+    return `https://wa.me/${telefoneFormatado}?text=${mensagemEncoded}`;
+  }
+  
+
+
+
+  // Carregar todos os cadastros
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -74,7 +96,7 @@ function Admin() {
     }
   }, [id, dados]);
 
-  // Função para editar um cadastro
+  // Função de editar cadastro
   const handleEdit = async () => {
     const idInt = parseInt(id, 10);
     if (isNaN(idInt)) {
@@ -126,7 +148,7 @@ function Admin() {
     }
   };
 
-  // Função para excluir um cadastro
+  // Função de excluir cadastro
   const handleDelete = async (id) => {
     const confirmation = window.confirm('Tem certeza que deseja excluir este item?');
     if (confirmation) {
@@ -172,7 +194,7 @@ function Admin() {
             <thead>
               <tr>
                 <th scope="col">Nome Responsável</th>
-                <th scope="col">Nome Pet</th>
+                <th scope="col" >Nome Pet</th>
                 <th scope="col">Telefone</th>
                 <th scope="col">Whatsapp</th>
                 <th scope="col">Excluir</th>
@@ -188,7 +210,7 @@ function Admin() {
                     <td className={styles.centerAlign}>{item.nome_pet}</td>
                     <td className={styles.centerAlign}>{item.telefone}</td>
                     <td className={styles.centerAlign}>
-                      <button className={styles.button}>
+                      <button className={styles.button}  onClick={() => window.open(generateWhatsAppLink(item.telefone, item.nome_resp, item.nome_pet), '_blank')} >
                         <img src={wzap} alt="whatsapp" className={styles.icon} />
                       </button>
                     </td>
@@ -240,6 +262,7 @@ function Admin() {
               value={telefone}
               onChange={(e) => setTelefone(e.target.value)}
               required
+              
             />
             <button type="submit">Atualizar</button>
           </form>
