@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../UserNovo/UserNovo.module.css';
 import { useParams, useNavigate } from 'react-router-dom';
+
 import api from '../services/api.js';
 
 function UserNovo() {
+
     const navigate = useNavigate();
+
     const { Id } = useParams();
+
     const [id, setId] = useState(Id ? parseInt(Id, 10) : null);
     const [nome_resp, setNomeResp] = useState('');
     const [nome_pet, setNomePet] = useState('');
@@ -90,7 +94,7 @@ function UserNovo() {
                     },
                     authorization
                 );
-                console.log('Cadastro Criado:', response.data);
+                //console.log('Cadastro Criado:', response.data);
             } else {
                 // Atualização de cadastro
                 response = await api.post(
@@ -113,7 +117,7 @@ function UserNovo() {
                     },
                     authorization
                 );
-                console.log('Cadastro Atualizado:', response.data);
+                //console.log('Cadastro Atualizado:', response.data);
             }
 
             alert('Cadastro salvo com sucesso!');
@@ -160,7 +164,7 @@ function UserNovo() {
                         
                         value={telefone}
                         onChange={e => setTelefone(e.target.value)}
-                        minLength={11}
+                        minLength={10}
                         maxLength={11}
                     />
                 </div>

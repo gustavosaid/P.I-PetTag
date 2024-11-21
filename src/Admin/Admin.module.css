@@ -106,6 +106,9 @@
     background: #e5e5e5;
     border-radius: 8px;
 }
+td:hover{
+    background-color: #aed4e6;
+}
 
 .leftAlign {
     text-align: left;

@@ -17,7 +17,7 @@ function Login() {
             setError('');
             navigate('/Admin');
         } else {
-            setError('🤫Usuário ou senha incorretos🤫',);
+            setError('Usuário ou senha incorretos',);
         }
     };
 

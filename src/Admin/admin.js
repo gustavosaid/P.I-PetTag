@@ -13,7 +13,7 @@ import reactLogo from '../Assets/Images/logo.png';
 function Admin() {
   const navigate = useNavigate();
   const { id } = useParams(); // Pega o id da URL para edição
-  console.log('ID capturado da URL:', id);
+  //console.log('ID capturado da URL:', id);
 
   const [dados, setDados] = useState([]);
   const [nomePet, setNomePet] = useState('');
@@ -39,11 +39,11 @@ function Admin() {
     }
   
     // Mensagem do wpp
-    const mensagem = `Olá ${nomeResp}, estamos entrando em contato sobre o pet ${nomePet}!`;
+    const mensagem = `Olá ${nomeResp}, estamos entrando em contato sobre o pet, ${nomePet}!`;
     const mensagemEncoded = encodeURIComponent(mensagem); // Codifica a mensagem para a URL
   
     // Url q sera usada no whatsapp
-    return `https://wa.me/${telefoneFormatado}?text=${mensagemEncoded}`;
+    return `https://wa.me/55${telefoneFormatado}?text=${mensagemEncoded}`;
   }
   
 
@@ -136,7 +136,7 @@ function Admin() {
       );
 
       if (response.data.data.update_cadastro_by_pk) {
-        console.log('Cadastro atualizado com sucesso:', response.data);
+        //console.log('Cadastro atualizado com sucesso:', response.data);
         alert('Cadastro atualizado com sucesso!');
         navigate(`/admin`);
       } else {
