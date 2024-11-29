@@ -28,6 +28,14 @@ function UserNovo() {
         async function loadCadastro() {
             if (!id) return; // Se não há `id`, não tenta carregar.
 
+            const token = localStorage.getItem('token');
+            const authorization = {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                withCredentials: true,
+            };
             try {
                 const response = await api.post(
                     '/v1/graphql',
@@ -94,10 +102,10 @@ function UserNovo() {
                     },
                     authorization
                 );
-                //console.log('Cadastro Criado:', response.data);
+                console.log('Cadastro Criado:', response.data);
             } else {
                 // Atualização de cadastro
-                response = await api.post(
+                const response = await api.post(
                     '/v1/graphql',
                     {
                         query: `
@@ -117,7 +125,7 @@ function UserNovo() {
                     },
                     authorization
                 );
-                //console.log('Cadastro Atualizado:', response.data);
+                console.log('Cadastro Atualizado:', response.data);
             }
 
             alert('Cadastro salvo com sucesso!');
@@ -161,7 +169,7 @@ function UserNovo() {
                     <input
                         required
                         type="tel"
-                        
+
                         value={telefone}
                         onChange={e => setTelefone(e.target.value)}
                         minLength={10}

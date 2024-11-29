@@ -12,34 +12,32 @@
     
 
 }
-
-.teste{
+/* parte para caso esteja scroll*/
+.tableScrool{
     height:100%;
     overflow: auto;
     max-height: 600px;
     width:auto;
-    
 }
 
 .logo {
     /*logo pet tag*/
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     margin: auto;
     display: block;
 }
 
 .headersConteudo {
     /*quadrado branco*/
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    color: hsl(0, 0%, 0%);
+    font-family: system-ui;
+    font-size: 16px;
+    color:#000000;
     border: 8px solid #e6e6e6;
     background-color: #f8fbfc;
     border-radius: 25px;
     display: table;
-    padding: 30px;
-    margin: 8px;
+    
     padding: 30px 30px 30px 40px;
     width: 90%; /* Ajuste o percentual conforme necessário */
     margin: 0 auto;
@@ -96,7 +94,6 @@
 
 
 }
-
 .headersConteudo td {
     /*conteudos*/
     border: 2px solid #cacaca;
@@ -106,6 +103,7 @@
     background: #e5e5e5;
     border-radius: 8px;
 }
+
 td:hover{
     background-color: #aed4e6;
 }
@@ -146,4 +144,5 @@ td:hover{
 .headersConteudo td:nth-child(6) {
     width: 50px; /* Largura fixa para colunas de ícones */
     text-align: center;
-}
+} 
+

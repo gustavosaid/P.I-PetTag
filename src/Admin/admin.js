@@ -20,12 +20,12 @@ function Admin() {
   const [nomeResp, setNomeResp] = useState('');
   const [telefone, setTelefone] = useState('');
 
-  const token = localStorage.getItem('token');
-  const authorization = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
+  // const token = localStorage.getItem('token');
+  // const authorization = {
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // };
 
 
   // Gerar link para whatsapp web
@@ -39,7 +39,7 @@ function Admin() {
     }
   
     // Mensagem do wpp
-    const mensagem = `Olá ${nomeResp}, estamos entrando em contato sobre o pet, ${nomePet}!`;
+    const mensagem = `Olá ${nomeResp}, estamos entrando em contato pois localizamos seu animalzinho, ${nomePet} foi encontrado. `;
     const mensagemEncoded = encodeURIComponent(mensagem); // Codifica a mensagem para a URL
   
     // Url q sera usada no whatsapp
@@ -189,7 +189,7 @@ function Admin() {
     <div className={styles.corpo}>
       <img src={reactLogo} alt="logo pet tag" className={styles.logo} />
       <div className={styles.headersConteudo}>
-        <div className={styles.teste}>
+        <div className={styles.tableScrool}>
           <table className={styles.table}>
             <thead>
               <tr>

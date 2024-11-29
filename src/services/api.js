@@ -9,8 +9,6 @@ const api = axios.create({
 });
 
 
-
-
 // Função para o POST
 export const cadastroPost = async (data) => {
     try {
@@ -73,9 +71,5 @@ export const cadastroDelete = async (id) => {
     throw error;  // Propaga o erro para ser tratado no frontend
   }
 };
-
-
-
-
  
 export default api;

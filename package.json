@@ -39,9 +39,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ],
-    "proxy": ["https://sweeping-skunk-98.hasura.app"
-  ]
-    
-    
+    "proxy": [
+      "https://sweeping-skunk-98.hasura.app"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
