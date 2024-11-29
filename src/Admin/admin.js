@@ -4,11 +4,9 @@ import axios from 'axios';
 import styles from '../Admin/Admin.module.css';
 import wzap from '../Assets/Images/whatsapp.png';
 import excluir from '../Assets/Images/botao-apagar.png';
-import editar from '../Assets/Images/editar.png';
+import editar from '../Assets/Images/editar1.png';
 import reactLogo from '../Assets/Images/logo.png';
-// import pessoas from '../Assets/Images/pessoas.png';
-// import phone from '../Assets/Images/telefone-fixo.png';
-// import animals from '../Assets/Images/animais-de-estimacao.png';
+
 
 function Admin() {
   const navigate = useNavigate();

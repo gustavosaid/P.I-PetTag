@@ -7,9 +7,8 @@
     border-spacing: 2px;
     margin-left: 10px;
     width: 90%; /* Ocupa 90% da largura do componente pai */
-    max-width: 1000px; /* Define um limite máximo */
+    max-width: 900px; /* Define um limite máximo */
     margin: 0 auto; 
-    
 
 }
 /* parte para caso esteja scroll*/
@@ -22,8 +21,8 @@
 
 .logo {
     /*logo pet tag*/
-    width: 180px;
-    height: 180px;
+    width: 130px;
+    height: 130px;
     margin: auto;
     display: block;
 }
@@ -33,13 +32,12 @@
     font-family: system-ui;
     font-size: 16px;
     color:#000000;
-    border: 8px solid #e6e6e6;
-    background-color: #f8fbfc;
+    border: 8px solid #c9c9c9;
+    background-color: #f8fbfcbe;
     border-radius: 25px;
     display: table;
-    
     padding: 30px 30px 30px 40px;
-    width: 90%; /* Ajuste o percentual conforme necessário */
+    width: 80%; /* Ajuste o percentual conforme necessário */
     margin: 0 auto;
     
     
@@ -49,10 +47,10 @@
 .corpo {
     /*cor atras do corpo*/
     font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size: 20px;
+    font-size: 17px;
     background-color: #8ab2c8;
     padding: 40px;
-    width: 800px;
+    width: 700px;
     border-radius: 25px;
     margin: 0px auto;
     box-shadow: 5px 5px 35px #aed4e6;
@@ -68,7 +66,7 @@
 
 .headersConteudo th {
     /*cabeçalho */
-    background-color: #e1eef6;
+    background-color: #BFBFBF;
     height: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
@@ -96,11 +94,11 @@
 }
 .headersConteudo td {
     /*conteudos*/
-    border: 2px solid #cacaca;
+    border: 3px solid #cacaca;
     height: 5px;
     text-decoration: none;
     padding: 10px;
-    background: #e5e5e5;
+    background: #eeeded;
     border-radius: 8px;
 }
 
